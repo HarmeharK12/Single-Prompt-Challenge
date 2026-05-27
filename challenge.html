@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mini Game Hub</title>
+  <link rel="stylesheet" href="challenge.css"/>
+</head>
+<body>
+
+  <div id="mainMenu" class="page active">
+    <h1>Welcome to the Mini Game Hub!</h1>
+    <h2>Choose a Game</h2>
+
+    <div class="game-grid">
+
+      <div class="game-card" onclick="openGame('memory')">
+        <img src="https://play-lh.googleusercontent.com/VixmJODU1y3uNgJVHXOyqfV63No1A_qi8QgSv_goqy5I8QogG-fBDPtRUk-drZ-TSYc">
+        <h3>Memory Card Matching Game</h3>
+        <button>▶ Play</button>
+      </div>
+
+      <div class="game-card" onclick="openGame('maze')">
+        <img src="https://thumbs.dreamstime.com/b/abstract-square-labyrinth-green-garden-shrubs-game-kids-puzzle-children-one-entrance-one-exit-labyrinth-conundrum-abstract-129337735.jpg">
+        <h3>Maze Escape</h3>
+        <button>▶ Play</button>
+      </div>
+
+      <div class="game-card" onclick="openGame('simon')">
+        <img src="https://m.media-amazon.com/images/I/61MHBFYV0mL.png">
+        <h3>Simon Says</h3>
+        <button>▶ Play</button>
+      </div>
+
+      <div class="game-card" onclick="openGame('word')">
+        <img src="https://arenacloud.cdn.arkadiumhosted.com/arenaxstorage-blob/arenax-games/ScrambleWord/0.72/build/resources/assets/thumbs/icon_512.png">
+        <h3>Word Scramble</h3>
+        <button>▶ Play</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MEMORY GAME -->
+  <div id="memory" class="page">
+    <button class="back-btn" onclick="goHome()">← Back</button>
+    <h1>Memory Card Matching Game</h1>
+    <h2>Match the cards in pairs</h2>
+
+    <div id="memoryBoard" class="memory-board"></div>
+
+    <p id="attempts">Attempts: 0 / 20</p>
+  </div>
+
+  <!-- MAZE GAME -->
+  <div id="maze" class="page">
+    <button class="back-btn" onclick="goHome()">← Back</button>
+    <h1>Maze Escape Game</h1>
+    <h2>Try to get out of the maze!</h2>
+
+    <div class="maze-container">
+      <div id="player"></div>
+    </div>
+
+    <div class="controls">
+      <button onclick="movePlayer('up')">⬆</button>
+      <div>
+        <button onclick="movePlayer('left')">⬅</button>
+        <button onclick="movePlayer('right')">➡</button>
+      </div>
+      <button onclick="movePlayer('down')">⬇</button>
+    </div>
+  </div>
+
+  <!-- SIMON SAYS -->
+  <div id="simon" class="page">
+    <button class="back-btn" onclick="goHome()">← Back</button>
+    <h1>Simon Says Memory Game</h1>
+    <h2>Choose the order of colours that just flashed</h2>
+
+    <button id="startSimon">Start Game</button>
+
+    <div class="simon-grid">
+      <div class="simon-btn" data-color="red"></div>
+      <div class="simon-btn" data-color="blue"></div>
+      <div class="simon-btn" data-color="green"></div>
+      <div class="simon-btn" data-color="yellow"></div>
+      <div class="simon-btn" data-color="purple"></div>
+      <div class="simon-btn" data-color="orange"></div>
+      <div class="simon-btn" data-color="pink"></div>
+      <div class="simon-btn" data-color="cyan"></div>
+    </div>
+  </div>
+
+  <!-- WORD SCRAMBLE -->
+  <div id="word" class="page">
+    <button class="back-btn" onclick="goHome()">← Back</button>
+    <h1>Word Scramble Game</h1>
+    <h2>Unscramble the word!</h2>
+
+    <div class="word-box">
+      <h3 id="scrambledWord"></h3>
+      <input type="text" id="wordInput" placeholder="Type your answer">
+      <button onclick="checkWord()">Submit</button>
+    </div>
+  </div>
+
+  <!-- POPUP -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <h1 id="popupText"></h1>
+      <button onclick="restartGame()">Play Again</button>
+    </div>
+  </div>
+
+  <audio id="winSound" src="https://www.myinstants.com/media/sounds/roblox-old-winning-sound-effect.mp3"></audio>
+  <audio id="loseSound" src="https://www.myinstants.com/media/sounds/ha-ha-loser.mp3"></audio>
+
+  <script src="challenge.js"></script>
+</body>
+</html>
