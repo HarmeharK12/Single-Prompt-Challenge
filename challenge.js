@@ -327,19 +327,37 @@ simonBtns.forEach(btn => {
 
 //////////////// WORD SCRAMBLE //////////////////
 
+
 const words = [
-  "computer",
-  "elephant",
-  "javascript",
-  "mountain",
-  "building"
+  "computer", "elephant", "javascript", "mountain", "building",
+  "sunflower", "astronaut", "adventure", "treasure", "keyboard",
+  "dinosaur", "lightning", "butterfly", "pineapple", "chocolate",
+  "spaceship", "submarine", "rainforest", "helicopter", "telescope"
 ];
 
 let currentWord = "";
+let playedWords = []; 
 
 function initWord() {
-  currentWord = words[Math.floor(Math.random() * words.length)];
+  
+  document.getElementById("wordInput").value = "";
 
+  
+  let availableWords = words.filter(word => !playedWords.includes(word));
+
+  
+  if (availableWords.length === 0) {
+    playedWords = [];
+    availableWords = [...words];
+  }
+
+  
+  currentWord = availableWords[Math.floor(Math.random() * availableWords.length)];
+  
+  
+  playedWords.push(currentWord);
+
+  
   const scrambled = currentWord
     .split("")
     .sort(() => Math.random() - 0.5)
@@ -349,7 +367,7 @@ function initWord() {
 }
 
 function checkWord() {
-  const input = document.getElementById("wordInput").value.toLowerCase();
+  const input = document.getElementById("wordInput").value.toLowerCase().trim();
 
   if (input === currentWord) {
     showPopup(true);
@@ -357,6 +375,7 @@ function checkWord() {
     showPopup(false);
   }
 }
+
 
 document.addEventListener("keydown", (event) => {
   if (currentGame !== "maze") return;
