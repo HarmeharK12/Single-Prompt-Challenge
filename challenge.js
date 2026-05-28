@@ -125,26 +125,115 @@ function flipCard(card, symbol) {
 
 //////////////// MAZE GAME //////////////////
 
+const GRID_SIZE = 9; 
 let playerCol = 0; 
 let playerRow = 0; 
-
-
-const mazeMap = [
-  [0, 0, 1, 1, 1, 1, 1, 1, 1], 
-  [1, 0, 1, 0, 0, 0, 0, 0, 1], 
-  [1, 0, 1, 0, 1, 1, 1, 0, 1], 
-  [1, 0, 0, 0, 1, 0, 0, 0, 1], 
-  [1, 1, 1, 0, 1, 0, 1, 1, 1], 
-  [1, 0, 0, 0, 0, 0, 0, 0, 1], 
-  [1, 0, 1, 1, 1, 1, 1, 0, 1], 
-  [1, 0, 0, 0, 0, 0, 0, 0, 0], 
-  [1, 1, 1, 1, 1, 1, 1, 1, 2]  
-];
-
+let mazeMap = []; 
 function initMaze() {
+  generateProceduralMaze();
+  renderMazeHTML();
+  
   playerCol = 0;
   playerRow = 0;
   updatePlayerElement();
+}
+
+
+function generateProceduralMaze() {
+
+  mazeMap = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(1));
+
+ 
+  let visited = Array(GRID_SIZE).fill(null).map(() => Array(GRID_SIZE).fill(false));
+  let stack = [];
+
+  
+  let current = { r: 0, c: 0 };
+  visited[current.r][current.c] = true;
+  mazeMap[current.r][current.c] = 0;
+
+  let moves = 0;
+  const maxMoves = 300; 
+
+  while (moves < maxMoves) {
+    let neighbors = [];
+    
+
+    const directions = [
+      { r: -2, c: 0, wallR: -1, wallC: 0 }, 
+      { r: 2, c: 0, wallR: 1, wallC: 0 },   
+      { r: 0, c: -2, wallR: 0, wallC: -1 }, 
+      { r: 0, c: 2, wallR: 0, wallC: 1 }    
+    ];
+
+    directions.forEach(d => {
+      let nr = current.r + d.r;
+      let nc = current.c + d.c;
+      if (nr >= 0 && nr < GRID_SIZE && nc >= 0 && nc < GRID_SIZE && !visited[nr][nc]) {
+        neighbors.push({ r: nr, c: nc, wallR: current.r + d.wallR, wallC: current.c + d.wallC });
+      }
+    });
+
+    if (neighbors.length > 0) {
+     
+      let next = neighbors[Math.floor(Math.random() * neighbors.length)];
+      
+      
+      mazeMap[next.wallR][next.wallC] = 0;
+      mazeMap[next.r][next.c] = 0;
+      
+      visited[next.r][next.c] = true;
+      stack.push(current);
+      current = { r: next.r, c: next.c };
+    } else if (stack.length > 0) {
+      current = stack.pop(); 
+    } else {
+      break; 
+    }
+    moves++;
+  }
+
+  
+  mazeMap[0][0] = 0;
+  mazeMap[0][1] = 0;
+  mazeMap[1][0] = 0;
+  mazeMap[GRID_SIZE - 1][GRID_SIZE - 2] = 0;
+  mazeMap[GRID_SIZE - 2][GRID_SIZE - 1] = 0;
+
+ 
+  mazeMap[GRID_SIZE - 1][GRID_SIZE - 1] = 2;
+}
+
+
+function renderMazeHTML() {
+  const container = document.getElementById("mazeContainer");
+  
+
+  const player = document.getElementById("player");
+  container.innerHTML = "";
+  container.appendChild(player);
+
+  
+  for (let r = 0; r < GRID_SIZE; r++) {
+    for (let c = 0; c < GRID_SIZE; c++) {
+      const cell = document.createElement("div");
+      
+      if (mazeMap[r][c] === 1) {
+        cell.className = "cell wall";
+        cell.innerHTML = '<div class="top"></div><div class="front"></div><div class="right-side"></div>';
+      } else if (r === 0 && c === 0) {
+        cell.className = "cell start-zone";
+        cell.innerHTML = '<span class="maze-label">START</span>';
+      } else if (mazeMap[r][c] === 2) {
+        cell.className = "cell end-zone";
+        cell.innerHTML = '<span class="maze-label">END</span>';
+      } else {
+        cell.className = "cell path";
+      }
+      
+      container.appendChild(cell);
+    }
+  }
 }
 
 function movePlayer(dir) {
@@ -156,12 +245,12 @@ function movePlayer(dir) {
   if (dir === "left") targetCol -= 1;
   if (dir === "right") targetCol += 1;
 
-
-  if (targetRow < 0 || targetRow > 8 || targetCol < 0 || targetCol > 8) {
+  
+  if (targetRow < 0 || targetRow >= GRID_SIZE || targetCol < 0 || targetCol >= GRID_SIZE) {
     return;
   }
 
- 
+
   if (mazeMap[targetRow][targetCol] === 1) {
     return; 
   }
@@ -179,7 +268,6 @@ function movePlayer(dir) {
 function updatePlayerElement() {
   const player = document.getElementById("player");
   
-
   let leftPixels = (playerCol * 54) + 14;
   let topPixels = (playerRow * 54) + 14;
 
@@ -269,3 +357,12 @@ function checkWord() {
     showPopup(false);
   }
 }
+
+document.addEventListener("keydown", (event) => {
+  if (currentGame !== "maze") return;
+
+  if (event.key === "ArrowUp")    movePlayer("up");
+  if (event.key === "ArrowDown")  movePlayer("down");
+  if (event.key === "ArrowLeft")  movePlayer("left");
+  if (event.key === "ArrowRight") movePlayer("right");
+});
