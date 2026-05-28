@@ -52,14 +52,53 @@
     <p id="attempts">Attempts: 0 / 20</p>
   </div>
 
-  <!-- MAZE GAME -->
+  <!-- MAZE GAME (Updated Section) -->
   <div id="maze" class="page">
     <button class="back-btn" onclick="goHome()">← Back</button>
     <h1>Maze Escape Game</h1>
     <h2>Try to get out of the maze!</h2>
 
-    <div class="maze-container">
-      <div id="player"></div>
+    <!-- The 3D scene wrapper handles perspective -->
+    <div class="scene">
+      <div class="maze-container">
+        <!-- Player starts inside the maze -->
+        <div id="player"></div>
+
+        <!-- Row 1 -->
+        <div class="cell start-zone"></div>
+        <div class="cell wall"></div>
+        <div class="cell wall"></div>
+        <div class="cell wall"></div>
+        <div class="cell wall"></div>
+
+        <!-- Row 2 -->
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell wall"></div>
+        <div class="cell wall"></div>
+
+        <!-- Row 3 -->
+        <div class="cell wall"></div>
+        <div class="cell wall"></div>
+        <div class="cell path"></div>
+        <div class="cell wall"></div>
+        <div class="cell wall"></div>
+
+        <!-- Row 4 -->
+        <div class="cell wall"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell wall"></div>
+
+        <!-- Row 5 -->
+        <div class="cell wall"></div>
+        <div class="cell wall"></div>
+        <div class="cell wall"></div>
+        <div class="cell path"></div>
+        <div class="cell end-zone"></div>
+      </div>
     </div>
 
     <div class="controls">
