@@ -53,51 +53,114 @@
     <p id="attempts">Attempts: 0 / 20</p>
   </div>
 
-    <!-- MAZE ESCAPE -->
+      <!-- MAZE GAME -->
   <div id="maze" class="page">
     <button class="back-btn" onclick="goHome()">← Back</button>
-    <h1>Garden Escape Maze</h1>
-    <h2>Find the single path through the hedges to escape!</h2>
+    <h1>3D Garden Labyrinth</h1>
+    <h2>Navigate the dense hedge maze to escape!</h2>
 
     <div class="scene">
-    
-      <div class="maze-container" style="border-left-color: transparent; border-right-color: transparent;">
+      <div class="maze-container">
         <div id="player"></div>
 
         
-        <div class="cell start-zone"></div>
-        <div class="cell wall"></div>
-        <div class="cell wall"></div>
-        <div class="cell wall"></div>
-        <div class="cell wall"></div>
-
-       
+        <div class="cell start-zone"><span class="maze-label">START</span></div>
         <div class="cell path"></div>
-        <div class="cell path"></div>
-        <div class="cell path"></div>
-        <div class="cell wall"></div>
-        <div class="cell wall"></div>
-
-     
-        <div class="cell wall"></div>
-        <div class="cell wall"></div>
-        <div class="cell path"></div>
-        <div class="cell wall"></div>
-        <div class="cell wall"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
 
         
-        <div class="cell wall"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
         <div class="cell path"></div>
         <div class="cell path"></div>
         <div class="cell path"></div>
-        <div class="cell wall"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
 
        
-        <div class="cell wall"></div>
-        <div class="cell wall"></div>
-        <div class="cell wall"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
         <div class="cell path"></div>
-        <div class="cell end-zone"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+
+        
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+
+      
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+
+     
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+
+        
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+
+     
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+        <div class="cell path"></div>
+
+        
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell wall"><div class="top"></div><div class="front"></div><div class="right-side"></div></div>
+        <div class="cell end-zone"><span class="maze-label">END</span></div>
       </div>
     </div>
 
@@ -110,6 +173,7 @@
       <button onclick="movePlayer('down')">⬇</button>
     </div>
   </div>
+
 
 
   <!-- SIMON SAYS -->

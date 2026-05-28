@@ -8,7 +8,7 @@ function openGame(id) {
 
   if (id === "memory") initMemory();
   if (id === "word") initWord();
-  if (id === "maze") initMaze(); // Added reset for maze game when opened
+  if (id === "maze") initMaze(); 
 }
 
 function goHome() {
@@ -123,19 +123,22 @@ function flipCard(card, symbol) {
   }
 }
 
-//////////////// MAZE GAME (Updated for 3D Map) //////////////////
+//////////////// MAZE GAME //////////////////
 
-// Track player position by grid columns and rows (0 to 4)
 let playerCol = 0; 
 let playerRow = 0; 
 
-// A 5x5 representation of the map from your HTML: 0 = Path, 1 = Wall, 2 = End
+
 const mazeMap = [
-  [0, 1, 1, 1, 1], // Row 1
-  [0, 0, 0, 1, 1], // Row 2
-  [1, 1, 0, 1, 1], // Row 3
-  [1, 0, 0, 0, 1], // Row 4
-  [1, 1, 1, 0, 2]  // Row 5
+  [0, 0, 1, 1, 1, 1, 1, 1, 1], 
+  [1, 0, 1, 0, 0, 0, 0, 0, 1], 
+  [1, 0, 1, 0, 1, 1, 1, 0, 1], 
+  [1, 0, 0, 0, 1, 0, 0, 0, 1], 
+  [1, 1, 1, 0, 1, 0, 1, 1, 1], 
+  [1, 0, 0, 0, 0, 0, 0, 0, 1], 
+  [1, 0, 1, 1, 1, 1, 1, 0, 1], 
+  [1, 0, 0, 0, 0, 0, 0, 0, 0], 
+  [1, 1, 1, 1, 1, 1, 1, 1, 2]  
 ];
 
 function initMaze() {
@@ -153,22 +156,21 @@ function movePlayer(dir) {
   if (dir === "left") targetCol -= 1;
   if (dir === "right") targetCol += 1;
 
-  // Check if movement goes outside map boundaries
-  if (targetRow < 0 || targetRow > 4 || targetCol < 0 || targetCol > 4) {
-    return; // Stop movement at edge
+
+  if (targetRow < 0 || targetRow > 8 || targetCol < 0 || targetCol > 8) {
+    return;
   }
 
-  // Check if destination is a solid wall
+ 
   if (mazeMap[targetRow][targetCol] === 1) {
-    return; // Block movement into walls
+    return; 
   }
 
-  // Update real positions if valid
   playerRow = targetRow;
   playerCol = targetCol;
   updatePlayerElement();
 
-  // Check win condition
+ 
   if (mazeMap[playerRow][playerCol] === 2) {
     setTimeout(() => showPopup(true), 150);
   }
@@ -177,16 +179,14 @@ function movePlayer(dir) {
 function updatePlayerElement() {
   const player = document.getElementById("player");
   
-  // 100px cells + 30px offset to perfectly center the 40px player ball
-  let leftPixels = (playerCol * 100) + 30;
-  let topPixels = (playerRow * 100) + 30;
+
+  let leftPixels = (playerCol * 54) + 14;
+  let topPixels = (playerRow * 54) + 14;
 
   player.style.left = leftPixels + "px";
   player.style.top = topPixels + "px";
-  
-  // Essential: Keeps player facing upright and floating above the 3D floor plane
-  player.style.transform = "rotateX(-35deg) translateZ(20px)";
 }
+
 
 //////////////// SIMON SAYS //////////////////
 
