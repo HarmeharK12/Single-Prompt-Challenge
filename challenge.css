@@ -87,28 +87,30 @@ body {
   color: transparent;
 }
 
-/* ==========================================================================
-   3D MAZE STYLING SYSTEM (Replaced old .maze-container and #player definitions)
-   ========================================================================== */
 
-/* Perspective wrapper required for the 3D depth effect */
+
 .scene {
-  perspective: 800px;
+  perspective: 900px;
   perspective-origin: 50% 100%;
   display: flex;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 
 .maze-container {
   width: 500px;
   height: 500px;
-  background: midnightblue; /* Seamless background blend */
-  position: relative;
-  border: 10px solid green;
   
-  /* Creates the 3D tilt look */
-  transform: rotateX(35deg);
+  background: #d2b48c; 
+  background-image: radial-gradient(rgba(0,0,0,0.05) 15%, transparent 16%);
+  background-size: 8px 8px;
+  
+  position: relative;
+  border: 12px solid #3a5f0b; 
+  border-radius: 8px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  
+  transform: rotateX(38deg);
   transform-style: preserve-3d;
 
   display: grid;
@@ -116,7 +118,7 @@ body {
   grid-template-rows: repeat(5, var(--cell-size));
 }
 
-/* Base styles for all grid cells */
+
 .cell {
   position: relative;
   width: var(--cell-size);
@@ -124,57 +126,64 @@ body {
   transform-style: preserve-3d;
 }
 
-/* 3D Wall Styling */
+
 .wall {
-  background: green; /* Top face of the wall */
+
+  background: #4c7f13;
+  background-image: 
+    radial-gradient(#3a5f0b 20%, transparent 20%),
+    radial-gradient(#5c9918 15%, transparent 15%);
+  background-size: 12px 12px;
+  background-position: 0 0, 6px 6px;
 }
 
-/* Creates the front 3D face of the wall */
+
 .wall::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 40px; 
-  background: #004d00; /* Darker green for depth shading */
+  height: 50px; 
+  
+  
+  background: #2d4a08;
+  background-image: radial-gradient(#1e3305 20%, transparent 20%);
+  background-size: 10px 10px;
+  
   transform: rotateX(-90deg);
   transform-origin: bottom;
+  box-shadow: inset 0 10px 20px rgba(0,0,0,0.4);
 }
 
-/* Special Zones styled to stand out against midnight blue */
 .start-zone {
-  background: rgba(0, 191, 255, 0.3); /* Translucent electric blue */
-  box-shadow: inset 0 0 20px #00bfff;
+  background: #c2a47c;
+  box-shadow: inset 5px 5px 15px rgba(0,0,0,0.2);
 }
 
 .end-zone {
-  background: rgba(255, 69, 0, 0.3); /* Translucent neon orange */
-  box-shadow: inset 0 0 20px #ff4500;
+  background: #c2a47c;
+  box-shadow: inset -5px -5px 15px rgba(0,0,0,0.2);
 }
 
+
 #player {
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle at 30% 30%, #fff200, #cc9900);
+  width: 36px;
+  height: 36px;
+  background: radial-gradient(circle at 35% 35%, #ff4d4d, #990000 80%);
   border-radius: 50%;
   position: absolute;
-  top: 30px;
-  left: 30px;
+  top: 32px;
+  left: 32px;
   z-index: 100;
   
-  /* Tilts player upright and adds a drop shadow on the floor */
-  transform: rotateX(-35deg) translateZ(20px);
-  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.6);
+  transform: rotateX(-38deg) translateZ(25px);
+  box-shadow: 0 20px 12px rgba(0, 0, 0, 0.5);
 }
 
 .controls {
-  margin-top: 50px;
+  margin-top: 40px;
 }
-
-/* ==========================================================================
-   END OF 3D MAZE STYLING SYSTEM
-   ========================================================================== */
 
 .simon-grid {
   width: 500px;

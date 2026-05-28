@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<!-- MAIN PAGE -->
   <div id="mainMenu" class="page active">
     <h1>Welcome to the Mini Game Hub!</h1>
     <h2>Choose a Game...</h2>
@@ -41,7 +42,7 @@
     </div>
   </div>
 
-  <!-- MEMORY GAME -->
+<!-- MEMORY CARD -->
   <div id="memory" class="page">
     <button class="back-btn" onclick="goHome()">← Back</button>
     <h1>Memory Card Matching Game</h1>
@@ -52,47 +53,46 @@
     <p id="attempts">Attempts: 0 / 20</p>
   </div>
 
-  <!-- MAZE GAME (Updated Section) -->
+    <!-- MAZE ESCAPE -->
   <div id="maze" class="page">
     <button class="back-btn" onclick="goHome()">← Back</button>
-    <h1>Maze Escape Game</h1>
-    <h2>Try to get out of the maze!</h2>
+    <h1>Garden Escape Maze</h1>
+    <h2>Find the single path through the hedges to escape!</h2>
 
-    <!-- The 3D scene wrapper handles perspective -->
     <div class="scene">
-      <div class="maze-container">
-        <!-- Player starts inside the maze -->
+    
+      <div class="maze-container" style="border-left-color: transparent; border-right-color: transparent;">
         <div id="player"></div>
 
-        <!-- Row 1 -->
+        
         <div class="cell start-zone"></div>
         <div class="cell wall"></div>
         <div class="cell wall"></div>
         <div class="cell wall"></div>
         <div class="cell wall"></div>
 
-        <!-- Row 2 -->
+       
         <div class="cell path"></div>
         <div class="cell path"></div>
         <div class="cell path"></div>
         <div class="cell wall"></div>
         <div class="cell wall"></div>
 
-        <!-- Row 3 -->
+     
         <div class="cell wall"></div>
         <div class="cell wall"></div>
         <div class="cell path"></div>
         <div class="cell wall"></div>
         <div class="cell wall"></div>
 
-        <!-- Row 4 -->
+        
         <div class="cell wall"></div>
         <div class="cell path"></div>
         <div class="cell path"></div>
         <div class="cell path"></div>
         <div class="cell wall"></div>
 
-        <!-- Row 5 -->
+       
         <div class="cell wall"></div>
         <div class="cell wall"></div>
         <div class="cell wall"></div>
@@ -110,6 +110,7 @@
       <button onclick="movePlayer('down')">⬇</button>
     </div>
   </div>
+
 
   <!-- SIMON SAYS -->
   <div id="simon" class="page">
